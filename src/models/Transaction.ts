@@ -6,26 +6,26 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
-} from 'typeorm';
+} from "typeorm";
 
-import Category from './Category';
+import Category from "./Category";
 
-@Entity('transactions')
+@Entity("transactions")
 class Transaction {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
   @Column()
   title: string;
 
   @Column()
-  type: 'income' | 'outcome';
+  type: "income" | "outcome";
 
-  @Column('decimal')
+  @Column("decimal")
   value: number;
 
   @ManyToOne(() => Category)
-  @JoinColumn({ name: 'category_id' })
+  @JoinColumn({ name: "category_id" })
   category: Category;
 
   @Column()

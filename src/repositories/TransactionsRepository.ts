@@ -1,6 +1,6 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { EntityRepository, Repository } from "typeorm";
 
-import Transaction from '../models/Transaction';
+import Transaction from "../models/Transaction";
 
 interface Balance {
   income: number;
@@ -16,11 +16,11 @@ class TransactionsRepository extends Repository<Transaction> {
     const { income, outcome } = transactions.reduce(
       (accumulator, transaction) => {
         switch (transaction.type) {
-          case 'income':
+          case "income":
             accumulator.income += Number(transaction.value);
             break;
 
-          case 'outcome':
+          case "outcome":
             accumulator.outcome += Number(transaction.value);
             break;
 
@@ -34,7 +34,7 @@ class TransactionsRepository extends Repository<Transaction> {
         income: 0,
         outcome: 0,
         total: 0,
-      },
+      }
     );
 
     const total = income - outcome;

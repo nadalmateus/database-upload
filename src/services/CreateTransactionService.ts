@@ -1,16 +1,16 @@
-import { getCustomRepository, getRepository } from 'typeorm';
+import { getCustomRepository, getRepository } from "typeorm";
 
 // import AppError from '../errors/AppError';
 
-import Transaction from '../models/Transaction';
-import Category from '../models/Category';
-import TransactionsRepository from '../repositories/TransactionsRepository';
-import AppError from '../errors/AppError';
+import Transaction from "../models/Transaction";
+import Category from "../models/Category";
+import TransactionsRepository from "../repositories/TransactionsRepository";
+import AppError from "../errors/AppError";
 
 interface RequestDTO {
   title: string;
   value: number;
-  type: 'income' | 'outcome';
+  type: "income" | "outcome";
   category: string;
 }
 
@@ -26,8 +26,8 @@ class CreateTransactionService {
 
     const { total } = await transactionRepository.getBalance();
 
-    if (type === 'outcome' && total < value) {
-      throw new AppError('Insufficient funds!');
+    if (type === "outcome" && total < value) {
+      throw new AppError("Insufficient funds!");
     }
 
     let transactionCategory = await categoryRepository.findOne({
